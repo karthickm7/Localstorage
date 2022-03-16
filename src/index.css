@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.error-msg{
+font-size: 12px;
+width: 100%;
+color: brown;
+}
+
+.success-msg{
+  width: 100%;
+  background-color: #0f8344;
+  color: white;
+  font-weight: 600;
+  padding: 20px;
+}
