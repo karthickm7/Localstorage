@@ -29,34 +29,55 @@ function Login() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    let regform = localStorage.getItem('regform');
+    let newreg = JSON.parse(regform);
+    console.log(newreg.pasword)
 
-    if (email !== "") {
-      const emailregex =
-        /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-      if (emailregex.test(email)) {
-        setEmailError("");
-        if (email === "admin@demo.com") {
-          setEmailError("");
-          if (pasword === "demo") {
-            setSuccessMsg("you are Successfully Logged In");
-          } else {
-            setPaswordError("Password doesnt match with Email");
-          }
-        } else {
-          setEmailError("Email does not match with dataBase");
-        }
-      } else {
-        setEmailError("Invalid Email");
-      }
-    } else {
-      setEmailError("Emal Required");
+    if (email === newreg.mail && pasword === newreg.wordp) {
+      setSuccessMsg("Successfully Logged");
+    }
+    else if(email !== newreg.mail){
+      setEmailError("Enter Valid Email");
+    }
+    else if (pasword !== newreg){
+      setPaswordError("Enter a valid password");
     }
 
-    if (pasword !== "") {
-    } else {
-      setPaswordError("Enter Password");
-    }
+    
+
+
+
+    // if (email !== "") {
+    //   const emailregex =
+    //     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    //   if (emailregex.test(email)) {
+    //     setEmailError("");
+    //     if (email === "admin@demo.com") {
+    //       setEmailError("");
+    //       if (pasword === "demo") {
+    //         setSuccessMsg("you are Successfully Logged In");
+    //       } else {
+    //         setPaswordError("Password doesnt match with Email");
+    //       }
+    //     } else {
+    //       setEmailError("Email does not match with dataBase");
+    //     }
+    //   } else {
+    //     setEmailError("Invalid Email");
+    //   }
+    // } else {
+    //   setEmailError("Emal Required");
+    // }
+
+    // if (pasword !== "") {
+    // } else {
+    //   setPaswordError("Enter Password");
+    // }
   };
+
+
+
+
   return (
     <Container className="bg-light ">
       <Row className="mt-5">

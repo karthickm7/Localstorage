@@ -1,14 +1,13 @@
 
-import Login from './login';
-import './login.css';
+import Login from './Login';
 import Parent from './parentchild/Parent';
 import Signup from './registration';
 import './signup.css';
 
 function App() {
   return (
-    
-    <Signup/>
+    </Parent>
+    // <Signup/>
     
   );
 }
