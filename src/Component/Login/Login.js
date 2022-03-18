@@ -1,82 +1,37 @@
 import React, { useState } from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 
 import "./login.css";
 
 function Login() {
+  let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [pasword, setPasword] = useState("");
   const [paswordError, setPaswordError] = useState("");
 
-  const [successMsg, setSuccessMsg] = useState("");
+  const [data, setData] = useState({ email: "", pasword: "" });
 
-  const handleEmailChange = (e) => {
-    setSuccessMsg("");
-    setEmailError("");
-    setEmail(e.target.value);
-
-    console.log(e.target.value, "mail");
-  };
-
-  const handlePasswordChange = (e) => {
-    setSuccessMsg("");
-    setPaswordError("");
-    setPasword(e.target.value);
-    console.log(pasword);
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    let regform = localStorage.getItem('regform');
+    let regform = localStorage.getItem("regform");
     let newreg = JSON.parse(regform);
-    console.log(newreg.pasword)
-
-    if (email === newreg.mail && pasword === newreg.wordp) {
-      setSuccessMsg("Successfully Logged");
-    }
-    else if(email !== newreg.mail){
+    console.log(newreg.pasword);
+    console.log(newreg.mail)
+    // navigate("/home");
+    if (email===newreg.mail && pasword===newreg.wordp) {
+    } else if (email !== newreg.mail) {
       setEmailError("Enter Valid Email");
-    }
-    else if (pasword !== newreg){
+    } else if (pasword !== newreg) {
       setPaswordError("Enter a valid password");
     }
-
-    
-
-
-
-    // if (email !== "") {
-    //   const emailregex =
-    //     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    //   if (emailregex.test(email)) {
-    //     setEmailError("");
-    //     if (email === "admin@demo.com") {
-    //       setEmailError("");
-    //       if (pasword === "demo") {
-    //         setSuccessMsg("you are Successfully Logged In");
-    //       } else {
-    //         setPaswordError("Password doesnt match with Email");
-    //       }
-    //     } else {
-    //       setEmailError("Email does not match with dataBase");
-    //     }
-    //   } else {
-    //     setEmailError("Invalid Email");
-    //   }
-    // } else {
-    //   setEmailError("Emal Required");
-    // }
-
-    // if (pasword !== "") {
-    // } else {
-    //   setPaswordError("Enter Password");
-    // }
   };
-
-
-
 
   return (
     <Container className="bg-light ">
@@ -87,19 +42,14 @@ function Login() {
           </h1>
 
           <Form onSubmit={handleFormSubmit}>
-            {successMsg && (
-              <>
-                <div className="success-msg">{successMsg}</div>
-                <br></br>
-              </>
-            )}
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
-                onChange={handleEmailChange}
-                value={email}
+                onChange={handleChange}
+                value={data.email}
+                name="email"
               ></Form.Control>
               {emailError && <div className="error-msg">{emailError}</div>}
             </Form.Group>
@@ -109,8 +59,9 @@ function Login() {
               <Form.Control
                 type="password"
                 placeholder="Password"
-                onChange={handlePasswordChange}
-                value={pasword}
+                onChange={handleChange}
+                value={data.pasword}
+                name="pasword"
               />
               {paswordError && <div className="error-msg">{paswordError}</div>}
             </Form.Group>

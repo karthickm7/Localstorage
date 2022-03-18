@@ -1,13 +1,23 @@
 
-import Login from './Login';
+import { Home } from './Component/Homee/Home';
+import Login from './Component/Login/Login';
 import Parent from './parentchild/Parent';
-import Signup from './registration';
-import './signup.css';
+import Signup from './Component/Signup/Signup';
+import { Routes, Route, Link } from "react-router-dom";
+
+
 
 function App() {
   return (
-    </Parent>
-    // <Signup/>
+     
+  // <Signup/>
+  <div>
+  <Routes>
+  <Route path="/" element={<Signup/>} />
+  <Route path='/Login' element={<Login/>} />
+  <Route path="/home" element={<Home/>} />
+ </Routes>
+ </div>
     
   );
 }
