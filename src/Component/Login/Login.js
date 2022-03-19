@@ -6,12 +6,9 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 function Login() {
-  let navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [pasword, setPasword] = useState("");
-  const [paswordError, setPaswordError] = useState("");
 
+  let navigate = useNavigate();
+  
   const [data, setData] = useState({ email: "", pasword: "" });
 
   const handleChange = (e) => {
@@ -20,23 +17,34 @@ function Login() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    let regform = localStorage.getItem("regform");
+    
+/*Get data from local*/
+    let regform = localStorage.getItem("Detail");
     let newreg = JSON.parse(regform);
-    console.log(newreg.pasword);
-    console.log(newreg.mail)
-    // navigate("/home");
-    if (email===newreg.mail && pasword===newreg.wordp) {
-    } else if (email !== newreg.mail) {
-      setEmailError("Enter Valid Email");
-    } else if (pasword !== newreg) {
-      setPaswordError("Enter a valid password");
+    
+    
+    console.log([data.email,data.pasword])
+    let datas=newreg.find((item)=>item.email===data.email && item.pasword===data.pasword)
+    console.log(datas)
+    if(datas){
+      console.log("success")
+      localStorage.setItem("Currentdata",JSON.stringify(datas))
+      navigate("/Home");
     }
+    else{
+      alert('invalid Data')
+      
+    }
+
   };
+
+  
 
   return (
     <Container className="bg-light ">
       <Row className="mt-5">
         <Col lg={5} md={6} sm={12} className="m-auto p-5 shadow-sm rounded-lg">
+
           <h1 className="shadow-sm text-dark mt-5 p-3 text-center rounded">
             User Login
           </h1>
@@ -51,7 +59,7 @@ function Login() {
                 value={data.email}
                 name="email"
               ></Form.Control>
-              {emailError && <div className="error-msg">{emailError}</div>}
+              {/* {emailError && <div className="error-msg">{emailError}</div>} */}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -63,8 +71,8 @@ function Login() {
                 value={data.pasword}
                 name="pasword"
               />
-              {paswordError && <div className="error-msg">{paswordError}</div>}
-            </Form.Group>
+              
+            </Form.Group> 
 
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
