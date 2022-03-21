@@ -53,7 +53,6 @@ const Signup = () => {
                 value={data.firstname}
                 name="firstname"
               />
-              {/* {fnameError && <div className="error-msg">{fnameError}</div>} */}
             </div>
             <br></br>
 
@@ -66,7 +65,6 @@ const Signup = () => {
                 value={data.lastname}
                 name="lastname"
               />
-              {/* {lnameError && <div className="error-msg">{lnameError}</div>} */}
             </div>
             <br></br>
 
@@ -80,7 +78,6 @@ const Signup = () => {
                 value={data.email}
                 name="email"
               />
-              {/* {emailError && <div className="error-msg">{emailError}</div>} */}
             </div>
             <br></br>
 
@@ -95,7 +92,7 @@ const Signup = () => {
                 name="pasword"
               />
             </div>
-            {/* {paswordError && <div className="error-msg">{paswordError}</div>} */}
+
             <br></br>
             <div>
               <Button variant="outlined" onClick={handleFormSubmit}>

@@ -10,7 +10,7 @@ import { Routes, Route, Link } from "react-router-dom";
 function App() {
   return (
      
-  // <Signup/>
+  
   <div>
   <Routes>
   <Route path="/" element={<Signup/>} />

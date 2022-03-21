@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Container, Form, Button } from "react-bootstrap";
+import { Row, Col, Container, Form, Button ,Modal} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,11 @@ import "./login.css";
 function Login() {
 
   let navigate = useNavigate();
+
+  const [show, setShow] = useState(false);
+
+  const PopupClose = () =>{  setShow(false)};
+  const PopupShow = () => { setShow(true)};
   
   const [data, setData] = useState({ email: "", pasword: "" });
 
@@ -21,19 +26,21 @@ function Login() {
 /*Get data from local*/
     let regform = localStorage.getItem("Detail");
     let newreg = JSON.parse(regform);
+    console.log(newreg)
     
     
     console.log([data.email,data.pasword])
     let datas=newreg.find((item)=>item.email===data.email && item.pasword===data.pasword)
     console.log(datas)
+    
     if(datas){
-      console.log("success")
-      localStorage.setItem("Currentdata",JSON.stringify(datas))
+      console.log(datas)
+      // localStorage.setItem("Currentdata",JSON.stringify(datas))
       navigate("/Home");
     }
-    else{
-      alert('invalid Data')
-      
+   
+    else {
+      PopupShow()
     }
 
   };
@@ -49,6 +56,19 @@ function Login() {
             User Login
           </h1>
 
+          {/* modal popup */}
+      <Modal show={show} onHide={PopupClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Invalid User Data</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Enter Valid Data</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={PopupClose}>
+            Close
+          </Button>
+         </Modal.Footer>
+      </Modal>
+
           <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -59,7 +79,7 @@ function Login() {
                 value={data.email}
                 name="email"
               ></Form.Control>
-              {/* {emailError && <div className="error-msg">{emailError}</div>} */}
+             
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
