@@ -1,0 +1,31 @@
+.cont{
+    background-color:rgb(252, 249, 249);
+    height: 50vh;
+    padding-bottom: 20px;
+    padding-top: 10px;
+
+
+}
+.button{
+    padding:10px;
+    border: 1px solid red;
+    color:black;
+    box-shadow: 0 0 4px black;
+    font-weight: bolder;
+}
+
+.txf{
+    background-color: antiquewhite;
+}
+
+
+@media only screen and (orientation: portrait)
+{
+    .cont{
+        background-color:lightcoral;
+    }
+    
+    
+
+    
+}

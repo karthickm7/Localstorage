@@ -1,0 +1,10 @@
+.formcontrol{
+    border-color: rgb(26, 3, 3);
+    background: white;
+
+
+}
+
+.invalid {
+    color: rgb(235, 55, 23);
+}

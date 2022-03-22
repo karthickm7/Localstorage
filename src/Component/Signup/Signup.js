@@ -1,14 +1,15 @@
-import { Paper, Container, Grid, TextField, Button } from "@mui/material";
-import { margin, padding, width } from "@mui/system";
 
+import {Paper,Grid, TextField, Button} from "@mui/material" ;
 import { useNavigate } from "react-router-dom";
-
-// import { Button } from 'bootstrap';
 import React, { useState } from "react";
+import styles from "./Signup.module.css";
+import { Container } from "react-bootstrap";
 
-const Signup = () => {
-  let navigate = useNavigate();
 
+const Signup = () => { 
+
+ let navigate = useNavigate();
+  
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
@@ -36,16 +37,20 @@ const Signup = () => {
 
   return (
     <>
-      <Grid align="center">
+      <Grid  className="queries" align="center" >
         <Paper
           elevation={6}
-          style={{ padding: "30px 20px", width: 500, margin: "30px auto" }}
+          
+          style={{ padding: "10px 20px", width: 400, margin: "10px 10px", }}
         >
-          <form className="classes.root">
+          
+          <form className="queries" >
             <h1>SignUp</h1>
-
-            <div>
+            
+            <Container className='cont'>
+            <div >
               <TextField
+                className="txf"
                 label="First Name"
                 variant="outlined"
                 required
@@ -56,8 +61,9 @@ const Signup = () => {
             </div>
             <br></br>
 
-            <div>
+            <div >
               <TextField
+                className="txf"
                 label="Last Name"
                 variant="outlined"
                 required
@@ -68,8 +74,9 @@ const Signup = () => {
             </div>
             <br></br>
 
-            <div>
+            <div >
               <TextField
+               className='txf'
                 label="Email"
                 type="email"
                 variant="outlined"
@@ -81,8 +88,9 @@ const Signup = () => {
             </div>
             <br></br>
 
-            <div>
+            <div >
               <TextField
+               className="txf"
                 label="Pasword"
                 variant="outlined"
                 type="password"
@@ -94,12 +102,15 @@ const Signup = () => {
             </div>
 
             <br></br>
+            </Container> 
             <div>
-              <Button variant="outlined" onClick={handleFormSubmit}>
-                SignUp
+              <Button  className={styles.button} variant="outlined" onClick={handleFormSubmit}>
+                Sign Up
               </Button>
             </div>
+            
           </form>
+         
         </Paper>
       </Grid>
     </>

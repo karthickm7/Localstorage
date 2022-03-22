@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Row, Col, Container, Form, Button ,Modal} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
+import dynamic from './login.module.css';
 
-import "./login.css";
+
 
 function Login() {
 
@@ -71,8 +72,9 @@ function Login() {
 
           <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label  className={dynamic.invalid}>Email address</Form.Label>
               <Form.Control
+                className={`${dynamic.formcontrol} ${!data.email && dynamic.inavlid}`} 
                 type="email"
                 placeholder="Enter email"
                 onChange={handleChange}
@@ -83,8 +85,9 @@ function Login() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
+              <Form.Label className={dynamic.invalid}>Password</Form.Label>
               <Form.Control
+                className={`${dynamic.formcontrol} ${!data.datas && dynamic.invalid}`}
                 type="password"
                 placeholder="Password"
                 onChange={handleChange}
