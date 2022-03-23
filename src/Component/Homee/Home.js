@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Nav, Navbar, Container, Table } from "react-bootstrap";
+import { Nav, Navbar, Container, Table, NavDropdown } from "react-bootstrap";
+import { useNavigate, Link } from "react-router-dom";
 
 export const Home = () => {
   
@@ -12,6 +13,15 @@ export const Home = () => {
     setObjcurrentuser(Objcurrentuser);
   }, []);
 
+  let currentuser= localStorage.getItem('Currentdata')
+  let objuser=JSON.parse(currentuser)
+ let navigate = useNavigate();
+ function logout()
+  {
+    localStorage.removeItem("Currentdata");
+    navigate('/Login');
+  }
+
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -21,7 +31,15 @@ export const Home = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Signup</Nav.Link>
-              <Nav.Link href="/Login">LogOut</Nav.Link>
+              
+            </Nav>
+            <Nav>
+              <NavDropdown title={objuser.firstname}>
+                <NavDropdown.Item onClick={logout}>LogOut</NavDropdown.Item>
+
+              </NavDropdown>
+
+
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -46,6 +64,8 @@ export const Home = () => {
                 <td>{row.firstname}</td>
                 <td>{row.lastname}</td>
                 <td>{row.email}</td>
+                <td>edit</td>
+                <td>del</td>
               </tr>
                 )
 

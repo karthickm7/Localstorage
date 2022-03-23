@@ -5,6 +5,8 @@ import Parent from './parentchild/Parent';
 import Signup from './Component/Signup/Signup';
 import { Routes, Route, Link } from "react-router-dom";
 
+import Reducers from './Redusercomponent/Reducers';
+
 
 
 function App() {
@@ -12,12 +14,13 @@ function App() {
      
   
   <div>
-  <Routes>
+  {/* <Routes>
   <Route path="/" element={<Signup/>} />
   <Route path='/Login' element={<Login/>} />
   <Route path="/Home" element={<Home/>} />
   <Route path='/Parent' element={<Parent/>}/>
- </Routes>
+ </Routes> */}
+   <Reducers/>
  </div>
     
   );

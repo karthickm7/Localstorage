@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Row, Col, Container, Form, Button ,Modal} from "react-bootstrap";
+import { Row, Col, Container, Form, Button} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import dynamic from './login.module.css';
+import Modals from "../Modal/Modals";
 
 
 
@@ -36,12 +37,12 @@ function Login() {
     
     if(datas){
       console.log(datas)
-      // localStorage.setItem("Currentdata",JSON.stringify(datas))
+      localStorage.setItem("Currentdata",JSON.stringify(datas))
       navigate("/Home");
     }
-   
     else {
       PopupShow()
+      console.log(show)
     }
 
   };
@@ -58,23 +59,13 @@ function Login() {
           </h1>
 
           {/* modal popup */}
-      <Modal show={show} onHide={PopupClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Invalid User Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Enter Valid Data</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={PopupClose}>
-            Close
-          </Button>
-         </Modal.Footer>
-      </Modal>
+      <Modals show={show}  onHide={PopupClose}/>
 
           <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label  className={dynamic.invalid}>Email address</Form.Label>
+              <Form.Label>Email address</Form.Label>
               <Form.Control
-                className={`${dynamic.formcontrol} ${!data.email && dynamic.inavlid}`} 
+                className={`${dynamic.formcontrol} ${!data.datas && dynamic.invalid}`} 
                 type="email"
                 placeholder="Enter email"
                 onChange={handleChange}
@@ -85,7 +76,7 @@ function Login() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label className={dynamic.invalid}>Password</Form.Label>
+              <Form.Label>Password</Form.Label>
               <Form.Control
                 className={`${dynamic.formcontrol} ${!data.datas && dynamic.invalid}`}
                 type="password"

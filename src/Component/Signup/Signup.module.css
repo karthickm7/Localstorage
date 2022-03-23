@@ -6,12 +6,14 @@
 
 
 }
-.button{
-    padding:10px;
+
+.buton{
+    padding:5px;
     border: 1px solid red;
-    color:black;
+    color:rgb(21, 97, 240);
     box-shadow: 0 0 4px black;
     font-weight: bolder;
+    margin-top: 5px;
 }
 
 .txf{
@@ -19,10 +21,19 @@
 }
 
 
-@media only screen and (orientation: portrait)
+@media only screen and (max-width:700px)
 {
     .cont{
         background-color:lightcoral;
+    }
+
+    .buton{
+        padding:5px;
+        border: 1px solid rgb(219, 85, 44);
+        color:rgb(1, 5, 14);
+        box-shadow: 0 0 4px rgb(201, 5, 219);
+        font-weight: bolder;
+        margin-top: 5px;
     }
     
     

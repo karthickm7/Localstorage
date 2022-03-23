@@ -47,10 +47,10 @@ const Signup = () => {
           <form className="queries" >
             <h1>SignUp</h1>
             
-            <Container className='cont'>
+            <Container className={styles.cont}>
             <div >
               <TextField
-                className="txf"
+                className={styles.txf}
                 label="First Name"
                 variant="outlined"
                 required
@@ -63,7 +63,7 @@ const Signup = () => {
 
             <div >
               <TextField
-                className="txf"
+                className={styles.txf}
                 label="Last Name"
                 variant="outlined"
                 required
@@ -76,7 +76,7 @@ const Signup = () => {
 
             <div >
               <TextField
-               className='txf'
+               className={styles.txf}
                 label="Email"
                 type="email"
                 variant="outlined"
@@ -90,7 +90,7 @@ const Signup = () => {
 
             <div >
               <TextField
-               className="txf"
+               className={styles.txf}
                 label="Pasword"
                 variant="outlined"
                 type="password"
@@ -104,7 +104,7 @@ const Signup = () => {
             <br></br>
             </Container> 
             <div>
-              <Button  className={styles.button} variant="outlined" onClick={handleFormSubmit}>
+              <Button  className={styles.buton} variant="outlined" onClick={handleFormSubmit}>
                 Sign Up
               </Button>
             </div>
