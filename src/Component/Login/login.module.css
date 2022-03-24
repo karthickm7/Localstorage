@@ -1,3 +1,7 @@
+body{
+
+    background-color:rgb(197, 206, 203)
+}
 .formcontrol{
     border-color: rgb(26, 3, 3);
     background: white;
@@ -5,6 +9,38 @@
 
 }
 
+.bgcolor{
+
+    background-color: rgb(245, 239, 237);
+}
+
 .invalid {
-    color: rgb(235, 55, 23);
+    color: rgb(241, 232, 231);
+}
+
+.button{
+
+    color:rgb(236, 229, 229);
+    font-weight : bolder;
+    border: 2px solid rgb(29, 27, 27);
+    padding: 5px 20px 5px 10px ;
+}
+
+@media only screen and (max-width:700px)
+{
+    .bgcolor{
+
+        background-color: rgb(223, 124, 79);
+    }
+
+    .button{
+
+        color:rgb(247, 174, 107);
+        font-weight : bolder;
+        border: 2px solid rgb(29, 27, 27);
+        padding: 5px 10px 5px 10px ;
+    }
+    
+
+
 }

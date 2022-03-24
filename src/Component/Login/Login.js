@@ -50,7 +50,7 @@ function Login() {
   
 
   return (
-    <Container className="bg-light ">
+    <Container className={dynamic.bgcolor}>
       <Row className="mt-5">
         <Col lg={5} md={6} sm={12} className="m-auto p-5 shadow-sm rounded-lg">
 
@@ -92,7 +92,7 @@ function Login() {
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
 
-            <Button variant="primary btn-block" type="submit">
+            <Button className={dynamic.button}variant="primary btn-block" type="submit">
               Submit
             </Button>
           </Form>

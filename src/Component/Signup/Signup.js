@@ -11,6 +11,7 @@ const Signup = () => {
  let navigate = useNavigate();
   
   const [data, setData] = useState({
+    Id:Date.now(),
     firstname: "",
     lastname: "",
     email: "",
