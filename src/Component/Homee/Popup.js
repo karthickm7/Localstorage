@@ -1,12 +1,15 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, useContext } from "react";
 // import { Button } from "bootstrap";
 import ReactDOM from "react-dom";
 import {Button} from "react-bootstrap";
 import {Modal} from 'react-bootstrap'
+import {rowcontext} from './Home';
 
 function Popup (props) {
 
-    console.log(props,"udata")
+  const currentrows = useContext(rowcontext);
+
+    console.log(currentrows?.edit?.Id,"currentrows")
 
     const [dat,setDat]=useState(
         {
@@ -18,9 +21,9 @@ function Popup (props) {
     )
 
     useEffect (()=>{
-        if(props.udata){
-            setDat(props.udata)}
-         } ,[props.udata])
+        if(currentrows.edit){
+            setDat(currentrows.edit)}
+         } ,[currentrows.edit])
 
 
     

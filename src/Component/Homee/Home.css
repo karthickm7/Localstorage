@@ -1,7 +1,41 @@
 th{
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
+   
+    
+    color: rgb(19, 17, 17);
+    font-weight: 800;
 }
+tbody{
+    background-color: #fafaf5ef;
+}
+
+Table{
+    background-color: rgb(238, 215, 215);
+    
+}
+
+h1{
+    color: rgb(8, 0, 0);
+    background-color: white
+}
+
+.data{
+    background-color: rgb(214, 30, 30);
+}
+
+
+tr{
+    color: rgb(12, 2, 2);
+    
+}
+
+
+
+@media only screen and (max-width:700px)
+{
+
+    th{
+        color: blue;
+    }
+    
+}
+
