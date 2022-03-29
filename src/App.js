@@ -7,6 +7,8 @@ import { Routes, Route, Link } from "react-router-dom";
 
 import Reducers from './Redusercomponent/Reducers';
 
+import Apicall  from './Fetch and axious/Apicall';
+
 
 
 function App() {
@@ -20,8 +22,9 @@ function App() {
       <Route path="/Home" element={<Home/>} />
       <Route path='/Parent' element={<Parent/>}/>
       <Route path='/Reducer' element={<Reducers/>}/>
+      <Route path='/Apicall' element={<Apicall/>}/>
     </Routes>
- </div>
+  </div>
     
   );
 }
