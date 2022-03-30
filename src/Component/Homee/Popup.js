@@ -6,7 +6,7 @@ import {Modal} from 'react-bootstrap'
 import {rowcontext} from './Home';
 
 function Popup (props) {
-
+  
   const currentrows = useContext(rowcontext);
 
     console.log(currentrows?.edit?.Id,"currentrows")
