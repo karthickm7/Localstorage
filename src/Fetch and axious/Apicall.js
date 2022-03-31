@@ -1,7 +1,12 @@
 import axios from "axios";
 import {Form,Nav,Navbar,Container,Table,NavDropdown,Button} from "react-bootstrap";
 import { useState, useReducer, useEffect } from "react";
-import Putpop from './Putpop'
+import Putpop from './Putpop';
+import styles from './Apicall.module.css';
+import Posting from "./Posting";
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ACTION = {
   GET_USER: "add-user",
@@ -13,7 +18,7 @@ export const ACTION = {
 let reducer = (state, action) => {
   switch (action.type) {
     case ACTION.GET_USER:
-      return [...state, ...action.payload];
+      return [...action.payload];
 
     case ACTION.POST_USER:
       return [...state, ...action.payload];
@@ -34,7 +39,18 @@ let reducer = (state, action) => {
 
 const Apicall = () => {
   const [user, dispatch] = useReducer(reducer, []);
+  const [edit,setEdit]=useState([])
+  const [errormsg,setErrormsg]=useState("");
   console.log(user, "adddispatch");
+
+  //To neglect reloading
+  useEffect(()=>{
+    if(user.length>0){
+      setEdit(user)
+    }
+  },[user])
+    
+  
 
   const [userr, setUserr] = useState();
   // modal popup [put]
@@ -47,10 +63,7 @@ const Apicall = () => {
     setShow(true);
   };
 
-  const [postuser, setPostuser] = useState({});
-  const handleChange = (e) => {
-    setPostuser({ ...postuser, [e.target.name]: e.target.value });
-  };
+  
 
   //GET function
   const getApiData = () => {
@@ -58,9 +71,12 @@ const Apicall = () => {
       .get("http://localhost:3006/user")
       .then((res) => {
         console.log(res, "api");
+        setErrormsg("");
         dispatch({ type: ACTION.GET_USER, payload: res.data });
       })
       .catch((err) => {
+        toast.error("Error Notification !");
+        
         console.log(err, "error");
       });
   };
@@ -69,26 +85,6 @@ const Apicall = () => {
   useEffect(() => {
     getApiData();
   }, []);
-
-  //POST
-  const postData = (e) => {
-    e.preventDefault();
-    let postdata = {
-      id: Date.now(),
-      // id: postuser.id,
-      Name: postuser.Name,
-      email: postuser.email,
-    };
-    axios
-      .post("http://localhost:3006/user", postdata)
-      .then((res) => {
-        console.log(res, "post");
-        dispatch({ type: ACTION.POST_USER, payload: res.postdata });
-      })
-      .catch((err) => {
-        console.log(err, "error");
-      });
-  };
 
   //Delete
   const handleSubmit = (e, userd) => {
@@ -99,9 +95,10 @@ const Apicall = () => {
       .delete(`http://localhost:3006/user/${userd}`)
       .then((res) => {
         // console.log(res,"del")
-        dispatch({ type: ACTION.DELETE_USER, payload: res.userd });
+        dispatch({ type: ACTION.DELETE_USER, payload:userd });
       })
       .catch((err) => {
+        toast.error("Error occured while Delete!");
         console.log(err, "delete error");
       });
   };
@@ -109,13 +106,13 @@ const Apicall = () => {
   //PUT
    const editpass =(updated)=>{
      console.log(updated.id,"type")
-     axios.put(`http://localhost:3006/user/${updated.id}`,updated)
+     axios.put(`http://localhost:3006/use/${updated.id}`,updated)
      .then((res)=>{
-       dispatch({type:ACTION.PUT_USER,payload:res})
-     }).catch((err)=>
-     {console.log(err,'puterr');})
-
-
+      getApiData();
+     }).catch((err)=>{
+      toast.error("Error occured while edit !");
+      console.log(err,'puterr');})
+    
   }
   const handleEdit = (userd) => {
     console.log(userd, "datass");
@@ -123,28 +120,32 @@ const Apicall = () => {
     setUserr(userd);
   };
 
+  // Put Binding method 
   const updated =(update)=>{
     editpass(update)
     PopupClose();
 
   }
-
+  let navigate = useNavigate();
 
   return (
-    <>
+    
       <div>
         <h1>Connecting with Axios</h1>
-        <Table striped bordered hover variant="dark">
+        <ToastContainer />
+        <Table className={styles.tabl}striped bordered hover variant="dark">
           <thead>
             <tr>
               <th>ID</th>
               <th>name</th>
               <th>User Name</th>
               <th>email</th>
+              <th>EDIT</th>
+              <th>DELETE</th>
             </tr>
           </thead>
           <tbody>
-            {user.map((userd) => {
+            {edit.map((userd) => {
               return (
                 <tr>
                   <td>{userd.id}</td>
@@ -155,46 +156,20 @@ const Apicall = () => {
                     <Button onClick={() => {handleEdit(userd);}} variant="dark">EDIT</Button>
                   </td>
                   <td>
-                    <Button
-                      onClick={(e) => {
-                        handleSubmit(e, userd.id);
-                      }}
-                      variant="warning"
-                    >
-                      Delete
-                    </Button>
+                    <Button onClick={(e) => { handleSubmit(e, userd.id);}}variant="warning">Delete</Button>
                   </td>
                 </tr>
               );
             })}
           </tbody>
         </Table>
-
-        <Form.Control
-          name="Name"
-          value={postuser.Name}
-          onChange={handleChange}
-          size="lg"
-          type="text"
-          placeholder="Name"
-        />
-        <br />
-        <Form.Control
-          name="email"
-          value={postuser.email}
-          onChange={handleChange}
-          type="text"
-          placeholder="email"
-        />
-        <br />
-
-        <Button onClick={postData} variant="secondary">
-          Secondary
-        </Button>
-
-        <Putpop puser={userr}show={show} onHide={PopupClose} putpass={editpass }/>
+        <Button onClick={()=>navigate("/Posting")}>POST DATA</Button>
+        <>
+        <Putpop binding={updated} puser={userr}show={show} onHide={PopupClose} />
+        </>
+        
       </div>
-    </>
+    
   );
 };
 export default Apicall;

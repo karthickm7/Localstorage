@@ -1,0 +1,8 @@
+.tabl  th {
+    text-align: center;
+    justify-content: space-evenly;
+    color: rgb(15, 15, 14);
+    background-color:rgb(252, 246, 246);
+    width: 500px;
+    font-weight: bold;
+}

@@ -23,7 +23,7 @@ useEffect(()=>{
 
 const handleput =()=>{
     console.log(update,"save changes")
-   props.putpass(update)
+   props.binding(update)
 }
 
  
