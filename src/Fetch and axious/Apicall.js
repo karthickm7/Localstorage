@@ -27,9 +27,9 @@ let reducer = (state, action) => {
       return state.filter((user) => user.id !== action.payload);
 
     case ACTION.PUT_USER:
-      let editt = state.findIndex((put) => put.Id === action.payload.Id);
-      console.log(editt ,"edit")
-      state.splice(editt, 1, action.payload);
+      
+      console.log(action,"edit")
+      
       return  state;
 
     default:
@@ -106,7 +106,7 @@ const Apicall = () => {
   //PUT
    const editpass =(updated)=>{
      console.log(updated.id,"type")
-     axios.put(`http://localhost:3006/use/${updated.id}`,updated)
+     axios.put(`http://localhost:3006/user/${updated.id}`,updated)
      .then((res)=>{
       getApiData();
      }).catch((err)=>{
@@ -116,16 +116,18 @@ const Apicall = () => {
   }
   const handleEdit = (userd) => {
     console.log(userd, "datass");
-    PopupShow();
+    // PopupShow();
+    navigate(`/Editing/${userd}`)
+
     setUserr(userd);
   };
 
-  // Put Binding method 
-  const updated =(update)=>{
-    editpass(update)
-    PopupClose();
+  // // // Put Binding method 
+  // // const updated =(update)=>{
+  // //   editpass(update)
+  // //   PopupClose();
 
-  }
+  // }
   let navigate = useNavigate();
 
   return (
@@ -153,7 +155,7 @@ const Apicall = () => {
                   <td>{userd.username}</td>
                   <td>{userd.email}</td>
                   <td>
-                    <Button onClick={() => {handleEdit(userd);}} variant="dark">EDIT</Button>
+                    <Button onClick={() => {handleEdit(userd.id);}} variant="dark">EDIT</Button>
                   </td>
                   <td>
                     <Button onClick={(e) => { handleSubmit(e, userd.id);}}variant="warning">Delete</Button>
@@ -165,7 +167,7 @@ const Apicall = () => {
         </Table>
         <Button onClick={()=>navigate("/Posting")}>POST DATA</Button>
         <>
-        <Putpop binding={updated} puser={userr}show={show} onHide={PopupClose} />
+        {/* <Putpop binding={updated} puser={userr}show={show} onHide={PopupClose} /> */}
         </>
         
       </div>

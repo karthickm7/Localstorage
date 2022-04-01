@@ -9,6 +9,7 @@ import Reducers from './Redusercomponent/Reducers';
 
 import Apicall  from './Fetch and axious/Apicall';
 import Posting  from './Fetch and axious/Posting';
+import Editing from './Fetch and axious/Editing';
 
 
 
@@ -25,6 +26,7 @@ function App() {
       <Route path='/Reducer' element={<Reducers/>}/>
       <Route path='/Apicall' element={<Apicall/>}/>
       <Route path='/Posting' element={<Posting />}/>
+      <Route path='/Editing/:id' element={<Editing/>}/>
     </Routes>
   </div>
     
