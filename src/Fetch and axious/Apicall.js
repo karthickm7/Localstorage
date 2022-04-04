@@ -71,7 +71,6 @@ const Apicall = () => {
       .get("http://localhost:3006/user")
       .then((res) => {
         console.log(res, "api");
-        setErrormsg("");
         dispatch({ type: ACTION.GET_USER, payload: res.data });
       })
       .catch((err) => {
