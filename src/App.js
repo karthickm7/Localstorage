@@ -14,8 +14,9 @@ import Clickcounter from './HOC/Clickcounter';
 import Hovercounter from './HOC/Hovercounter';
 import  Hoccounter from './HOC/Hoccounter';
 import { useSelector } from 'react-redux';
-import Tiffinsite from './Redux/Tiffinsite'
-
+import Tiffinsite from './Redux/Tiffinsite';
+import Postux from './Redux/Postux';
+import Editex from './Redux/Editex';
 
 const UpdatedClickcounter =  Hoccounter(Clickcounter)
 const UpdatedHovercounter =  Hoccounter(Hovercounter)
@@ -40,6 +41,8 @@ function App() {
       <Route path='/Clickcounter' element={<UpdatedClickcounter name="Jagdish" />}/>
       <Route path='/Hovercounter' element={<UpdatedHovercounter name="johnDavid"/>}/>
       <Route path='/tiffinsite' element={<Tiffinsite/>}/>
+      <Route path='/postux' element={<Postux/>}/>
+      <Route path='/editex/:id' element={<Editex/>}/>
     </Routes>
   </div>
     

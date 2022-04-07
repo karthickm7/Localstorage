@@ -1,61 +1,57 @@
 import { ActionTypes } from './Actiontype'
 import axios from 'axios'
-import { type } from '@testing-library/user-event/dist/type';
-
-export const fetchfood = () => {
-
-
-    return async (dispatch) => {
-
-        axios.get("http://localhost:3006/foods")
-            .then((res) => {
-                console.log("res",res)
-                dispatch({ type: ActionTypes.FETCH_FOOD, foods: res.data })
-               
-             } )
-           
+export const fetchfood =() => {
+    return async (dispatch)=>{
+        await axios.get("http://localhost:3006/foods")
+    .then((res)=>{
+        dispatch({type:ActionTypes.FETCH_FOOD,payload:res.data})
+        console.log(res,"res")
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
     }
 }
 
-
-
-// return{ 
-//     type: ActionTypes.GET_FOOD,
-//     payload:Foods,
-// }
-
-
-export const addfoods = () => {
-    return {
-        type: ActionTypes.POST_FOOD,
-
+export const addfood =(postfood) => {
+    return async (dispatch)=>{
+        await axios.post("http://localhost:3006/foods",postfood)
+    .then((res)=>{
+        console.log(res,"putf")
+        dispatch({type:ActionTypes.POST_FOOD,payload:res.postfood})
+        
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
     }
-};
+}
 
-export const choosefoods = (Foodss) => {
-    return {
-        type: ActionTypes.PUT_FOOD,
-        payload: Foodss,
+export const removefood =(items) => {
+    return async (dispatch)=>{
+        await axios.delete(`http://localhost:3006/foods/${items}`)
+    .then((res)=>{
+        console.log(res,"putf")
+        dispatch({type:ActionTypes.DELETE_FOOD,payload:res.items})
+        
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
     }
-};
+}
 
-export const removefoods = (Food) => {
-    return {
-        type: ActionTypes.DELETE_FOOD,
-        payload: Food,
+export const editfoods =(editfood,id) => {
+    return async (dispatch)=>{
+       await axios.put(`http://localhost:3006/foods/${id}`,editfood)
+       
+    .then((res)=>{
+        console.log(res,"putf")
+        dispatch({type:ActionTypes.PUT_FOOD,payload:editfood})
+        console.log('edit',editfood)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
     }
-};
-
-// export const fetchfood =()=>{
-//     return(dispatch)=>{
-//         dispatch(ActionTypes.GET_FOOD)
-//         axios.get("http://localhost:3006/foods")
-//         .then(response =>{
-//             console.log(response.data)
-//         })
-//         .catch(err => {
-//             console.log(err)
-//         })
-
-//     }
-//}
+}
