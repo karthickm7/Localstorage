@@ -5,9 +5,11 @@ import { useNavigate,useParams} from 'react-router-dom';
 import { useDispatch, useSelector, connect } from "react-redux";
 import axios from 'axios';
 import { editfoods } from '../state/action/Action';
+import { fetchfood } from "../state/action/Action";
 
 
 const Editex =()=>{
+// const[edit,setEdit]=useState(false)
  let navigate=useNavigate()
  let dispatch = useDispatch();
     const [ state, setState]= useState({})
@@ -22,13 +24,13 @@ const Editex =()=>{
       };
 
       let {id}=useParams()
-       console.log(id,'params')
+      console.log(id,'params')
+
       useEffect(()=>{
         const dynamicedit=()=>{
             axios.get(`http://localhost:3006/foods/${id}`)
             .then((res) => {
                 console.log(res,"edit") 
-                // let original=res.data.find((item)=>item.id===id)
                 setState(res.data)
                 
               })
@@ -45,9 +47,17 @@ const Editex =()=>{
          }
       },[state])
 
-   const Editfood =()=>{
-       navigate('/tiffinsite')
-       dispatch(editfoods(editfood,id))
+      // useEffect(()=>{
+      //       dispatch(fetchfood());
+      //          },[foods])
+      
+
+   const Editfood =(e)=>{
+        e.preventDefault();
+        dispatch(editfoods(editfood,id))
+        // setEdit(true)
+        navigate('/tiffinsite')
+       
    }
     return (
        <>
