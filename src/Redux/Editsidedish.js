@@ -9,19 +9,19 @@ import { fetchfood } from "../state/action/Action";
 import{editsidedish} from '../state/action/Actionside';
 
 
-const Editex =()=>{
+const Editsidedish =()=>{
 // const[edit,setEdit]=useState(false)
  let navigate=useNavigate()
  let dispatch = useDispatch();
     const [ state, setState]= useState({})
-    const [editfood, setEditfood] = useState({
+    const [editside, setEditside] = useState({
    
         title:state.title,
         url:state.url
     });
     
       const handleChange = (e) => {
-        setEditfood({ ...editfood, [e.target.name]: e.target.value });
+        setEditside({ ...editside, [e.target.name]: e.target.value });
       };
 
       let {id}=useParams()
@@ -29,8 +29,8 @@ const Editex =()=>{
 
       useEffect(()=>{
         const dynamicedit=()=>{
-            axios.get(`http://localhost:3006/foods/${id}`)
-            // axios.get(`http://localhost:3007/sidedish/${id}`)
+            // axios.get(`http://localhost:3006/foods/${id}`)
+            axios.get(`http://localhost:3007/sidedish/${id}`)
             .then((res) => {
                 console.log(res,"edit") 
                 setState(res.data)
@@ -45,7 +45,7 @@ const Editex =()=>{
 
       useEffect(()=>{
          if (state){
-            setEditfood(state)
+            setEditside(state)
          }
       },[state])
 
@@ -56,33 +56,31 @@ const Editex =()=>{
   //onclick update changes
    const Editfood =(e)=>{
         e.preventDefault();
-        dispatch(editfoods(editfood,id))
+        // dispatch(editfoods(editsidedish,id))
         // setEdit(true)
-        // dispatch(editsidedish(editfood,id))
-        navigate('/tiffinsite')
+        dispatch(editsidedish(editside,id))
+        navigate('/sidedish')
        
    }
     return (
        <>
-       <div className='col-5'>
        <Form.Control
         name="title"
-        value={editfood.title}
+        value={editside.title}
         onChange={handleChange}
-        size="md"
+        size="lg"
         type="text"
         placeholder="Title"
       />
       <br />
       <Form.Control
         name="url"
-        value={editfood.url}
+        value={editside.url}
         onChange={handleChange}
         size="md"
         type="text"
         placeholder="URL"
       />
-      </div>
       <br />
       <Button onClick={Editfood} variant="secondary">
         Update Data
@@ -90,4 +88,4 @@ const Editex =()=>{
        </>
     )
 }
-export default Editex;
+export default Editsidedish;

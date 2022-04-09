@@ -17,6 +17,9 @@ import { useSelector } from 'react-redux';
 import Tiffinsite from './Redux/Tiffinsite';
 import Postux from './Redux/Postux';
 import Editex from './Redux/Editex';
+import Sidedish from './Redux/Sidedish';
+import Postsidedish from './Redux/Postsidedish';
+import Editsidedish from './Redux/Editsidedish';
 
 const UpdatedClickcounter =  Hoccounter(Clickcounter)
 const UpdatedHovercounter =  Hoccounter(Hovercounter)
@@ -43,6 +46,9 @@ function App() {
       <Route path='/tiffinsite' element={<Tiffinsite/>}/>
       <Route path='/postux' element={<Postux/>}/>
       <Route path='/editex/:id' element={<Editex/>}/>
+      <Route path='/sidedish' element={<Sidedish/>}/>
+      <Route path='/postsidedish' element={<Postsidedish/>}/>
+      <Route path='/editsidedish/:id' element={<Editsidedish/>}/>
     </Routes>
   </div>
     

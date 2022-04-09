@@ -1,3 +1,10 @@
-.Link{
-    color:brown
+.Link {
+    color: #FFF;
+    font-weight: bolder;
+  }
+  .Link:hover {
+     color: rgb(255, 217, 0)
+  }
+#basic-nav-dropdown{
+    color:antiquewhite
 }

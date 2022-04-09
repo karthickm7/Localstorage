@@ -41,7 +41,7 @@ export const removefood =(items) => {
     .then((res)=>{
         console.log(res,"putf")
         dispatch({type:ActionTypes.DELETE_FOOD,payload:res.items})
-        dispatch(fetchfood());
+        // dispatch(fetchfood());
     })
     .catch((err)=>{
         console.log(err)

@@ -7,31 +7,31 @@ import {addfood} from '../state/action/Action';
 import {addsidedish} from '../state/action/Actionside';
 
 
-const Postux =()=>{
+const Postsidedish =()=>{
   let dispatch = useDispatch();
-  const [postfood, setPostfood] = useState({
+  const [postsidedish, setPostfood] = useState({
         id:Date.now(),
         title:"",
         url:""
     });
     
       const handleChange = (e) => {
-        setPostfood({ ...postfood, [e.target.name]: e.target.value });
+        setPostfood({ ...postsidedish, [e.target.name]: e.target.value });
       };
 
     let navigate = useNavigate();
 
     const Addfood =(e)=>{
       e.preventDefault()
-      dispatch(addfood(postfood));
-      // dispatch(addsidedish(postfood))
-      navigate('/tiffinsite')
+    //   dispatch(addfood(postsidedish));
+      dispatch(addsidedish(postsidedish))
+      navigate('/sidedish')
     }
 return(
     <>
     <Form.Control
         name="title"
-        value={postfood.title}
+        value={postsidedish.title}
         onChange={handleChange}
         size="lg"
         type="text"
@@ -40,7 +40,7 @@ return(
       <br />
       <Form.Control
         name="url"
-        value={postfood.url}
+        value={postsidedish.url}
         onChange={handleChange}
         size="md"
         type="text"
@@ -54,4 +54,4 @@ return(
 )
     
 }
-export default Postux; 
+export default Postsidedish; 
