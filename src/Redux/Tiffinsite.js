@@ -1,12 +1,17 @@
-import {Navbar,Container,Card,Button,Col,Row,Nav,NavDropdown} from "react-bootstrap";
+import {
+  Navbar,
+  Container,
+  Card,
+  Button,
+  Nav,
+  NavDropdown,
+} from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchfood } from "../state/action/Action";
 import { removefood } from "../state/action/Action";
-import { useNavigate, Link } from "react-router-dom";
-import { fetchsidedish } from '../state/action/Actionside';
+import { useNavigate } from "react-router-dom";
 import "../Redux/tiffinsite.css";
-import {removesidedish} from '../state/action/Actionside';
 
 const Tiffinsite = () => {
   const [del, setDel] = useState(false);
@@ -19,28 +24,19 @@ const Tiffinsite = () => {
 
   useEffect(() => {
     dispatch(fetchfood());
-  }, []);
+  }, [dispatch]);
 
   //delete de-refresh
   useEffect(() => {
     dispatch(fetchfood());
-    dispatch(removefood())
-    // dispatch(removesidedish());
-  }, [del]);
+    dispatch(removefood());
+  }, [del, dispatch]);
 
   //delete onclick
   const onDelete = (items) => {
     dispatch(removefood(items));
-      //  dispatch(removesidedish(items))
     setDel(true);
-
   };
-
-  //side dish dispatch
-  // useEffect(() => {
-  //   dispatch(fetchsidedish())
-  // }, [])
-  // console.log(sidedish, "sidedish")
 
   //edit onclick
   const onEdit = (items) => {
@@ -48,7 +44,7 @@ const Tiffinsite = () => {
   };
   return (
     <>
-      <Navbar  bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">
             Tiffin{" "}
@@ -60,12 +56,14 @@ const Tiffinsite = () => {
               className="d-inline-block align-top"
             />{" "}
             Site
-           </Navbar.Brand>
-          
-          <Nav.Link href="/postux" className="Link">POST</Nav.Link>
+          </Navbar.Brand>
+
+          <Nav.Link href="/postux" className="Link">
+            POST
+          </Nav.Link>
           <NavDropdown title="SIDE DISH" id="basic-nav-dropdown">
-          <NavDropdown.Item href="/sidedish">Menu Items</NavDropdown.Item>
-        </NavDropdown>
+            <NavDropdown.Item href="/sidedish">Menu Items</NavDropdown.Item>
+          </NavDropdown>
         </Container>
       </Navbar>
       <div>
@@ -76,8 +74,8 @@ const Tiffinsite = () => {
         <div className="col-12">
           <div className="row-6">
             <div className="col-12">
-              {foods&&
-               foods.map((items) => {
+              {foods &&
+                foods.map((items) => {
                   return (
                     <Card style={{ width: "18rem" }}>
                       <Card.Img variant="top" src={items.url} />
@@ -91,7 +89,10 @@ const Tiffinsite = () => {
                         >
                           EDIT
                         </Button>
-                        <Button onClick={() => onDelete(items.id)} variant="danger">
+                        <Button
+                          onClick={() => onDelete(items.id)}
+                          variant="danger"
+                        >
                           DELETE
                         </Button>
                       </Card.Body>
