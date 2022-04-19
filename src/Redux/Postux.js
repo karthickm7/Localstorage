@@ -1,10 +1,9 @@
 import React from "react";
-import {Form,Table,Button} from "react-bootstrap";
-import { useState,useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import {Form,Button} from "react-bootstrap";
+import { useState } from "react";
+import { useNavigate} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {addfood} from '../state/action/Action';
-import {addsidedish} from '../state/action/Actionside';
 
 
 const Postux =()=>{
