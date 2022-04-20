@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { editfoods } from "../state/action/Action";
 
 const Editex = () => {
-  // const[edit,setEdit]=useState(false)
   let navigate = useNavigate();
   let dispatch = useDispatch();
   const [state, setState] = useState({});
@@ -45,16 +43,11 @@ const Editex = () => {
     }
   }, [state]);
 
-  // useEffect(()=>{
-  //       dispatch(fetchfood());
-  //          },[foods])
-
   //onclick update changes
   const Editfood = (e) => {
     e.preventDefault();
     dispatch(editfoods(editfood, id));
-    // setEdit(true)
-    // dispatch(editsidedish(editfood,id))
+
     navigate("/tiffinsite");
   };
   return (

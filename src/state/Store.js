@@ -1,4 +1,4 @@
-import reducers from "../state/reducer/Combinedreducer";
+import reducers from "./reducer/Combinereducer";
 import ThunkMiddleware from "redux-thunk";
 import { createStore, applyMiddleware } from "redux";
 

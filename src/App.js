@@ -16,7 +16,7 @@ import Editex from "./Redux/Editex";
 
 import Postsidedish from "./Redux/Postsidedish";
 import Editsidedish from "./Redux/Editsidedish";
-// import Sidedish from "./Redux/Sidedish";
+import Greeting from "./unit testing/Greeting";
 const Sidedish = React.lazy(() => import("./Redux/Sidedish"));
 
 const UpdatedClickcounter = Hoccounter(Clickcounter);
@@ -27,8 +27,6 @@ function App() {
     <div>
       <Suspense fallback={<div>Loading....</div>}>
       <Routes>
-        
-        
         <Route path="/" element={<Signup />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Home" element={<Home />} />
@@ -44,12 +42,10 @@ function App() {
         <Route path="/postsidedish" element={<Postsidedish />} />
         <Route path="/editsidedish/:id" element={<Editsidedish />} />
         <Route path="/sidedish" element={<Sidedish />} />
-      
-        
-        
-      </Routes>
+        <Route path="/Greetings" element={<Greeting/>}/>
+        </Routes>
       </Suspense>
-     
+      
     </div>
   );
 }

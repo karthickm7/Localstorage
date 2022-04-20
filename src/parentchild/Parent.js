@@ -8,7 +8,7 @@ const Parent=()=>{
 
         <h1>{word}</h1>
         
-        <Child changeWord={word=> setWord(word)}/>
+        <Child changeWord={wordd=> setWord(wordd)}/>
         
         </div>
     );

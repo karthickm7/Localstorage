@@ -9,9 +9,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { removesidedish } from "../state/action/Actionside";
+import { removesidedish, fetchsidedish } from "../state/action/Actionside";
 import { useNavigate } from "react-router-dom";
-import { fetchsidedish } from "../state/action/Actionside";
 
 const Sidedish = () => {
   const [dele, setDele] = useState(false);

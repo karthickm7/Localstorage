@@ -8,8 +8,8 @@ import {
 } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchfood } from "../state/action/Action";
-import { removefood } from "../state/action/Action";
+import { fetchfood, removefood } from "../state/action/Action";
+
 import { useNavigate } from "react-router-dom";
 import "../Redux/tiffinsite.css";
 

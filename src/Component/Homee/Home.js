@@ -1,7 +1,7 @@
-// import { Button } from "bootstrap";
+
 import React, { useReducer, useEffect,createContext, useState } from "react";
 import {Nav,Navbar,Container,Table,NavDropdown,Button} from "react-bootstrap";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, } from "react-router-dom";
 import Popup from "./Popup";
 import "./Home.css";
 
@@ -37,7 +37,6 @@ export const rowcontext = createContext({});
 export const Home = () => {
   const [roww, setRoww] = useState();
 
-  // let navigate = useNavigate();
 
   const [show, setShow] = useState(false);
 

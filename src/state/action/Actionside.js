@@ -7,16 +7,13 @@ export const fetchsidedish = () => {
     try {
       response = await axios.get("http://localhost:3007/sidedish");
     } catch (err) {
-     console.log(err)
+      console.log(err);
     } finally {
       if (response.data) {
         console.log(response, "res");
         dispatch({ type: ActionTypes.FETCH_SIDEDISH, payload: response.data });
-      }
-      else{
-          console.log('inally error occured',response)
-         
-        
+      } else {
+        console.log("inally error occured", response);
       }
     }
   };
@@ -46,7 +43,6 @@ export const removesidedish = (items) => {
       .then((res) => {
         console.log(res, "putf");
         dispatch({ type: ActionTypes.DELETE_SIDEDISH, payload: res.items });
-        // dispatch(fetchsidedish());
       })
       .catch((err) => {
         console.log(err);

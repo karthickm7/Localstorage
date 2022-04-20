@@ -12,8 +12,6 @@ export const fetchfood = () => {
       alert("error handling");
     } finally {
       console.log("welcome finally");
-      // toast.error('finally error',
-      // toastStyle)
     }
   };
 };
@@ -39,7 +37,6 @@ export const removefood = (items) => {
       .then((res) => {
         console.log(res, "putf");
         dispatch({ type: ActionTypes.DELETE_FOOD, payload: res.items });
-        // dispatch(fetchfood());
       })
       .catch((err) => {
         console.log(err);

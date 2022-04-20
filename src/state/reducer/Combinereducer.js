@@ -1,6 +1,5 @@
 import { combineReducers } from "redux";
-import { Apireducer } from "../reducer/Apireducer";
-import { sidedishreducer } from "../reducer/Apireducer";
+import { Apireducer, sidedishreducer } from "./Apireducer";
 
 const reducers = combineReducers({
   allreducers: Apireducer,

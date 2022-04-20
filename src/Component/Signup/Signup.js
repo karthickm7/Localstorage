@@ -25,9 +25,9 @@ const Signup = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    let setData = localStorage.getItem("Detail");
-    if (setData) {
-      let objdata = JSON.parse(setData);
+    let setDatas = localStorage.getItem("Detail");
+    if (setDatas) {
+      let objdata = JSON.parse(setDatas);
       objdata.push(data);
       localStorage.setItem("Detail", JSON.stringify(objdata));
     } else {

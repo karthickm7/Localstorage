@@ -1,8 +1,7 @@
 import React from "react";
-// import { Button } from "bootstrap";
 import ReactDOM from "react-dom";
-import {Button} from "react-bootstrap";
-import {Modal} from 'react-bootstrap'
+import {Button,Modal} from "react-bootstrap";
+
 
 function Modals(props) {
   return ReactDOM.createPortal(

@@ -5,7 +5,7 @@ const intialState = {
   sidedish: [],
 };
 
-export const Apireducer = (state = intialState, action) => {
+export const Apireducer = (state = intialState,action) => {
   switch (action.type) {
     case ActionTypes.FETCH_FOOD:
       console.log(action, "reducer");
@@ -19,7 +19,7 @@ export const Apireducer = (state = intialState, action) => {
   }
 };
 
-export const sidedishreducer = (state = intialState, action) => {
+export const sidedishreducer = (state = intialState,action) => {
   switch (action.type) {
     case ActionTypes.FETCH_SIDEDISH:
       console.log(action, "reducer");
