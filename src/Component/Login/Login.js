@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { Row, Col, Container, Form, Button} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import dynamic from './login.module.css';
-import Modals from "../Modal/Modals";
+// import Modals from "../Modal/Modals";
 
 
 
 function Login() {
 
-  let navigate = useNavigate();
+ // let navigate = useNavigate();
 
   const [show, setShow] = useState(false);
 
-  const PopupClose = () =>{  setShow(false)};
+  // const PopupClose = () =>{  setShow(false)};
   const PopupShow = () => { setShow(true)};
   
   const [data, setData] = useState({ email: "", pasword: "" });
-
+ 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -38,7 +38,7 @@ function Login() {
     if(datas){
       console.log(datas)
       localStorage.setItem("Currentdata",JSON.stringify(datas))
-      navigate("/Home");
+      // navigate("/Home");
     }
     else {
       PopupShow()
@@ -59,7 +59,7 @@ function Login() {
           </h1>
 
           {/* modal popup */}
-      <Modals show={show}  onHide={PopupClose}/>
+      {/* <Modals show={show}  onHide={PopupClose}/> */}
 
           <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -67,11 +67,15 @@ function Login() {
               <Form.Control
                 className={`${dynamic.formcontrol} ${!data.datas && dynamic.invalid}`} 
                 type="email"
+                data-testid="email-input"
                 placeholder="Enter email"
                 onChange={handleChange}
                 value={data.email}
                 name="email"
+               
               ></Form.Control>
+               {data.email&& !(/\S+@\S+\.\S+/).test(data.email) && <span className="error" data-testid="error-msg">Please enter a valid email.</span>}
+              
              
             </Form.Group>
 
@@ -80,19 +84,20 @@ function Login() {
               <Form.Control
                 className={`${dynamic.formcontrol} ${!data.datas && dynamic.invalid}`}
                 type="password"
+                data-testid="password-input"
                 placeholder="Password"
                 onChange={handleChange}
                 value={data.pasword}
                 name="pasword"
               />
-              
+              {data.pasword && "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{8,}$".test(data.pasword) && (<span className="error" data-testid="perror-msg">Please enter a valid password.</span>)}
             </Form.Group> 
 
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
 
-            <Button className={dynamic.button}variant="primary btn-block" type="submit">
+            <Button data-testid="submit"className={dynamic.button}variant="primary btn-block" type="submit">
               Submit
             </Button>
           </Form>
