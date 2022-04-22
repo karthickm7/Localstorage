@@ -4,7 +4,8 @@ import {Button,Modal} from "react-bootstrap";
 
 
 function Modals(props) {
-  return ReactDOM.createPortal(
+  // return ReactDOM.createPortal(
+    return(
     <>
       <div>
       <Modal show={props.show} onHide={props.handleClose}>
@@ -19,8 +20,8 @@ function Modals(props) {
         </Modal.Footer>
         </Modal>
       </div>
-    </>,
-    document.getElementById('portal')
-  );
+    </>
+    // document.getElementById('portal')
+    )
 }
 export default Modals;

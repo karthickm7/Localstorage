@@ -11,9 +11,6 @@
 		},
 		{
 			"path": "../../../api"
-		},
-		{
-			"path": "../../../mobxnew"
 		}
 	],
 	"settings": {}

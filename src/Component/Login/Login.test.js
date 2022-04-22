@@ -1,11 +1,11 @@
 
-import { getByTestId, render ,screen} from '@testing-library/react';
+import { render ,screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from './Login';
 
-
 describe('login form',()=>{
-
+    
+    
     test('render login form with a button',async()=>{
         //Arrange
         render(<Login/>)
@@ -81,38 +81,39 @@ describe('login form',()=>{
     })
      
     test('pass valid password to password field',()=>{
+
+        // let passwordreg = /^(?=.*?[A-Za-z])(?=.*?\d).{8,}$/;
         //arrange
         render(<Login/>)
+        // let password='Pass@123';
+        // expect( passwordreg.test(password)).toBe(true)
+        //act
 
-        //ACT
-        const Inputelement=screen.getByTestId("password-input")
-        userEvent.type(Inputelement,"Pass123")
+        const Inputpasswordelement=screen.getByTestId("password-input")
+        userEvent.type(Inputpasswordelement,"pass@123")
+        const errelement=screen.getByText('Please enter a valid password.')
+        expect(errelement).toBeInTheDocument();
+        
 
         //Assert
-        const Inputvalidelement = screen.getAllByPlaceholderText("Password");
-        expect(Inputvalidelement).toHaveValue("Pass123");
-        //const errelement=screen.queryByTestId("perror-msg")
-        expect(screen.queryByTestId("perrormsg")).not.toBeInTheDocument();
-
-
+        // const passwordvalidelement = screen.queryByTestId("password-input");
+        // expect(passwordvalidelement).toHaveValue("pass@123");
+        
     })
 
-    // test('Should be able to submit the form',()=>{
-    //     //arrange
-    //     render(<Login/>)
-    //     const submitbtn =screen.getByTestId("submit");
-    //     const emailInputNode=screen.getAllByPlaceholderText("Enter email")
-    //     const passwordInputNode=screen.getByPlaceholderText("Password")
-         
-    //     //act
-    //     userEvent.type(emailInputNode,"test@mail.com")
-    //     userEvent.type(passwordInputNode,"Pass123")
 
-    //     userEvent.click(submitbtn);
+    test('pass invalid password to password field',()=>{
 
-    //     const userInfo=screen.getByText("pass123");
-    //     expect(userInfo).toBeInTheDocument();
-    // })
-
-    
+       
+        render(<Login/>)
+        //act
+        const Inputpassword=screen.getByTestId("password-input")
+        userEvent.type(Inputpassword,"pass")
+        
+        
+          const passworderror=screen.queryByTestId("perror-msg")
+          expect(passworderror).toBeInTheDocument();
+          const errortextelement =screen.getByText('Please enter a valid password',{exact:false});
+          expect(errortextelement).toBeInTheDocument();
+    })
 })
