@@ -1,14 +1,14 @@
-import React, { useState, useReducer } from "react";
-import { Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useReducer } from 'react';
+import { Form, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 const Posting = () => {
-  const [dispatch] = useReducer("");
+  const [dispatch] = useReducer('');
 
   const [postuser, setPostuser] = useState({
-    Name: "",
-    username: "",
-    email: "",
+    Name: '',
+    username: '',
+    email: ''
   });
 
   const handleChange = (e) => {
@@ -24,18 +24,18 @@ const Posting = () => {
       id: Date.now(),
       Name: postuser.Name,
       email: postuser.email,
-      username: postuser.username,
+      username: postuser.username
     };
     axios
-      .post("http://localhost:3006/user", postdata)
+      .post('http://localhost:3006/user', postdata)
       .then((res) => {
-        console.log(res, "post");
-        dispatch({ type: "post-user", payload: res.postdata });
+        console.log(res, 'post');
+        dispatch({ type: 'post-user', payload: res.postdata });
       })
       .catch((err) => {
-        console.log(err, "error");
+        console.log(err, 'error');
       });
-    navigate("/Apicall");
+    navigate('/Apicall');
   };
   return (
     <>

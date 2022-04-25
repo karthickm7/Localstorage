@@ -1,19 +1,18 @@
-
-import React, { useReducer, useEffect,createContext, useState } from "react";
-import {Nav,Navbar,Container,Table,NavDropdown,Button} from "react-bootstrap";
-import { useNavigate, } from "react-router-dom";
-import Popup from "./Popup";
-import "./Home.css";
-
+/* eslint-disable no-case-declarations */
+import React, { useReducer, useEffect, createContext, useState } from 'react';
+import { Nav, Navbar, Container, Table, NavDropdown, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import Popup from './Popup';
+import './Home.css';
 
 export const ACTION = {
-  ADD_DATA: "add-data",
-  DELETE_DATA: "delete-data",
-  EDIT_DATA: "edit-data",
+  ADD_DATA: 'add-data',
+  DELETE_DATA: 'delete-data',
+  EDIT_DATA: 'edit-data'
 };
 
 let reducer = (state, action) => {
-  console.log("actions=>", action);
+  console.log('actions=>', action);
   switch (action.type) {
     case ACTION.ADD_DATA:
       return [...state, ...action.payload];
@@ -23,7 +22,7 @@ let reducer = (state, action) => {
 
     case ACTION.EDIT_DATA:
       let editt = state.findIndex((save) => save.Id === action.payload.Id);
-      console.log(editt ,"edit")
+      console.log(editt, 'edit');
       state.splice(editt, 1, action.payload);
       return state;
 
@@ -37,7 +36,6 @@ export const rowcontext = createContext({});
 export const Home = () => {
   const [roww, setRoww] = useState();
 
-
   const [show, setShow] = useState(false);
 
   const PopupClose = () => {
@@ -48,46 +46,47 @@ export const Home = () => {
   };
 
   const handleSubmit = (row) => {
-    console.log("delete=>", row);
+    console.log('delete=>', row);
     dispatch({ type: ACTION.DELETE_DATA, payload: row });
   };
 
   const handlePass = (dat) => {
-    console.log("dtat", dat);
+    console.log('dtat', dat);
     dispatch({ type: ACTION.EDIT_DATA, payload: dat });
-    console.log(dispatch, "dispatch");
+    console.log(dispatch, 'dispatch');
     setShow(false);
   };
 
   const handleEdit = (row) => {
-    console.log(row, "datass");
+    console.log(row, 'datass');
     PopupShow();
     setRoww(row);
   };
 
   const [datas, dispatch] = useReducer(reducer, []);
 
-  console.log("state=>", datas);
+  console.log('state=>', datas);
   useEffect(() => {
-    let local = localStorage.getItem("Detail");
+    let local = localStorage.getItem('Detail');
     let Objcurrentuser = JSON.parse(local);
-    console.log(Objcurrentuser, "data");
+    console.log(Objcurrentuser, 'data');
     dispatch({ type: ACTION.ADD_DATA, payload: Objcurrentuser });
   }, []);
 
   //current user data
-  let currentuser = localStorage.getItem("Currentdata");
+  let currentuser = localStorage.getItem('Currentdata');
   let objuser = JSON.parse(currentuser);
   let navigate = useNavigate();
   function logout() {
-    localStorage.removeItem("Currentdata");
-    navigate("/Login");
+    localStorage.removeItem('Currentdata');
+    navigate('/Login');
   }
 
   return (
-    <rowcontext.Provider value={{
-      edit:roww
-    }}>
+    <rowcontext.Provider
+      value={{
+        edit: roww
+      }}>
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand href="#home">React-Router</Navbar.Brand>
@@ -106,7 +105,7 @@ export const Home = () => {
       </Navbar>
 
       <div>
-        <h1 style={{ textAlign: "center" }}> welcome Home </h1>
+        <h1 style={{ textAlign: 'center' }}> welcome Home </h1>
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -120,7 +119,7 @@ export const Home = () => {
           <tbody>
             {datas.map((row, index) => {
               return (
-                <tr>
+                <tr key={row.id}>
                   <td className="data">{index + 1}</td>
                   <td className="data"> {row.Id}</td>
                   <td className="data"> {row.firstname}</td>
@@ -128,7 +127,9 @@ export const Home = () => {
                   <td className="data"> {row.email}</td>
                   <td>
                     <Button
-                      onClick={() => {handleEdit(row);}}
+                      onClick={() => {
+                        handleEdit(row);
+                      }}
                       variant="dark">
                       EDIT
                     </Button>
@@ -136,9 +137,10 @@ export const Home = () => {
 
                   <td>
                     <Button
-                      onClick={() => {handleSubmit(row.Id);}}
-                      variant="danger"
-                    >
+                      onClick={() => {
+                        handleSubmit(row.Id);
+                      }}
+                      variant="danger">
                       Delete
                     </Button>
                   </td>

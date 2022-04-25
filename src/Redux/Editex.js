@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import axios from "axios";
-import { editfoods } from "../state/action/Action";
+import React, { useState, useEffect } from 'react';
+import { Form, Button } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { editfoods } from '../state/action/Action';
 
 const Editex = () => {
   let navigate = useNavigate();
@@ -11,7 +11,7 @@ const Editex = () => {
   const [state, setState] = useState({});
   const [editfood, setEditfood] = useState({
     title: state.title,
-    url: state.url,
+    url: state.url
   });
 
   const handleChange = (e) => {
@@ -19,7 +19,7 @@ const Editex = () => {
   };
 
   let { id } = useParams();
-  console.log(id, "params");
+  console.log(id, 'params');
 
   useEffect(() => {
     const dynamicedit = () => {
@@ -27,11 +27,11 @@ const Editex = () => {
         .get(`http://localhost:3006/foods/${id}`)
         // axios.get(`http://localhost:3007/sidedish/${id}`)
         .then((res) => {
-          console.log(res, "edit");
+          console.log(res, 'edit');
           setState(res.data);
         })
         .catch((err) => {
-          console.log(err, "error");
+          console.log(err, 'error');
         });
     };
     dynamicedit();
@@ -48,7 +48,7 @@ const Editex = () => {
     e.preventDefault();
     dispatch(editfoods(editfood, id));
 
-    navigate("/tiffinsite");
+    navigate('/tiffinsite');
   };
   return (
     <>

@@ -1,8 +1,9 @@
-import { Form, Button } from "react-bootstrap";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { Form, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 
+// eslint-disable-next-line no-unused-vars
 const Editing = (_props) => {
   const [state, setState] = useState({});
   console.log(state);
@@ -10,7 +11,7 @@ const Editing = (_props) => {
   const [update, setUpdate] = useState({
     Name: state.Name,
     username: state.username,
-    email: state.email,
+    email: state.email
   });
 
   const handleChange = (e) => {
@@ -18,7 +19,7 @@ const Editing = (_props) => {
   };
 
   let { id } = useParams();
-  console.log(typeof id, "params");
+  console.log(typeof id, 'params');
 
   useEffect(() => {
     const dynamicedit = () => {
@@ -30,7 +31,7 @@ const Editing = (_props) => {
           setState(res.data);
         })
         .catch((err) => {
-          console.log(err, "error");
+          console.log(err, 'error');
         });
     };
     dynamicedit();
@@ -49,12 +50,12 @@ const Editing = (_props) => {
     axios
       .put(`http://localhost:3006/user/${id}`, update)
       .then((res) => {
-        console.log(update, "state");
+        console.log(update, 'state');
         console.log(res);
-        navigate("/Apicall");
+        navigate('/Apicall');
       })
       .catch((err) => {
-        console.log(err, "puterr");
+        console.log(err, 'puterr');
       });
   };
 

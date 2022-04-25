@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const Hoccounter = (OriginalComponent) => {
   function NewComponent(props) {

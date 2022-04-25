@@ -1,18 +1,18 @@
-import axios from "axios";
-import { Table, Button } from "react-bootstrap";
-import { useState, useReducer, useEffect } from "react";
+import axios from 'axios';
+import { Table, Button } from 'react-bootstrap';
+import { useState, useReducer, useEffect } from 'react';
 
-import styles from "./Apicall.module.css";
+import styles from './Apicall.module.css';
 
-import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ACTION = {
-  GET_USER: "add-user",
-  POST_USER: "post-user",
-  DELETE_USER: "edit-user",
-  PUT_USER: "put-user",
+  GET_USER: 'add-user',
+  POST_USER: 'post-user',
+  DELETE_USER: 'edit-user',
+  PUT_USER: 'put-user'
 };
 
 let reducer = (state, action) => {
@@ -27,7 +27,7 @@ let reducer = (state, action) => {
       return state.filter((user) => user.id !== action.payload);
 
     case ACTION.PUT_USER:
-      console.log(action, "edit");
+      console.log(action, 'edit');
 
       return state;
 
@@ -39,7 +39,7 @@ let reducer = (state, action) => {
 const Apicall = () => {
   const [user, dispatch] = useReducer(reducer, []);
   const [edit, setEdit] = useState([]);
-  console.log(user, "adddispatch");
+  console.log(user, 'adddispatch');
 
   //To neglect reloading
   useEffect(() => {
@@ -53,15 +53,15 @@ const Apicall = () => {
   //GET function
   const getApiData = () => {
     axios
-      .get("http://localhost:3006/user")
+      .get('http://localhost:3006/user')
       .then((res) => {
-        console.log(res, "api");
+        console.log(res, 'api');
         dispatch({ type: ACTION.GET_USER, payload: res.data });
       })
       .catch((err) => {
-        toast.error("Error Notification !");
+        toast.error('Error Notification !');
 
-        console.log(err, "error");
+        console.log(err, 'error');
       });
   };
 
@@ -72,7 +72,7 @@ const Apicall = () => {
 
   //Delete
   const handleSubmit = (e, userd) => {
-    console.log(userd, "delete");
+    console.log(userd, 'delete');
 
     e.preventDefault();
     axios
@@ -82,14 +82,14 @@ const Apicall = () => {
         dispatch({ type: ACTION.DELETE_USER, payload: userd });
       })
       .catch((err) => {
-        toast.error("Error occured while Delete!");
-        console.log(err, "delete error");
+        toast.error('Error occured while Delete!');
+        console.log(err, 'delete error');
       });
   };
 
   //PUT
   const handleEdit = (userd) => {
-    console.log(userd, "datass");
+    console.log(userd, 'datass');
 
     navigate(`/Editing/${userd}`);
 
@@ -122,7 +122,7 @@ const Apicall = () => {
         <tbody>
           {edit.map((userd) => {
             return (
-              <tr>
+              <tr key={userd.id}>
                 <td>{userd.id}</td>
                 <td>{userd.Name}</td>
                 <td>{userd.username}</td>
@@ -132,8 +132,7 @@ const Apicall = () => {
                     onClick={() => {
                       handleEdit(userd.id);
                     }}
-                    variant="dark"
-                  >
+                    variant="dark">
                     EDIT
                   </Button>
                 </td>
@@ -142,8 +141,7 @@ const Apicall = () => {
                     onClick={(e) => {
                       handleSubmit(e, userd.id);
                     }}
-                    variant="warning"
-                  >
+                    variant="warning">
                     Delete
                   </Button>
                 </td>
@@ -152,10 +150,8 @@ const Apicall = () => {
           })}
         </tbody>
       </Table>
-      <Button onClick={() => navigate("/Posting")}>POST DATA</Button>
-      <>
-        {/* <Putpop binding={updated} puser={userr}show={show} onHide={PopupClose} /> */}
-      </>
+      <Button onClick={() => navigate('/Posting')}>POST DATA</Button>
+      <>{/* <Putpop binding={updated} puser={userr}show={show} onHide={PopupClose} /> */}</>
     </div>
   );
 };
