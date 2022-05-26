@@ -1,12 +1,11 @@
 import { Paper, Grid, TextField, Button } from '@mui/material';
-// import { useNavigate } from 'react-router-dom';
+
 import React, { useState } from 'react';
 import styles from './Signup.module.css';
 import { Container } from 'react-bootstrap';
 
 const Signup = () => {
-  //commented for testing purpose
-  // let navigate = useNavigate();
+  //commented for testing purpose let navigate = useNavigate();
 
   const [data, setData] = useState({
     Id: Date.now(),
@@ -31,7 +30,7 @@ const Signup = () => {
     } else {
       localStorage.setItem('Detail', JSON.stringify([data]));
     }
-    // navigate('/Login');
+    // commenting for testing navigate('/Login');
   };
 
   return (

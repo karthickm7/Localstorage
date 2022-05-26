@@ -7,6 +7,7 @@ import styles from './Apicall.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import Pagination from './Pagination';
 
 export const ACTION = {
   GET_USER: 'add-user',
@@ -39,7 +40,12 @@ let reducer = (state, action) => {
 const Apicall = () => {
   const [user, dispatch] = useReducer(reducer, []);
   const [edit, setEdit] = useState([]);
+  const [currentpage, setCurrentpage] = useState(1);
+  const [itemsperpage] = useState(5);
   console.log(user, 'adddispatch');
+  console.log(currentpage, 'page');
+
+  const paginatings = (pages) => setCurrentpage(pages);
 
   //To neglect reloading
   useEffect(() => {
@@ -104,6 +110,11 @@ const Apicall = () => {
   // }
   let navigate = useNavigate();
 
+  //pagination
+  const indexofLastPage = currentpage * itemsperpage;
+  const indexofFirstPage = indexofLastPage - itemsperpage;
+  const currentItems = edit.slice(indexofFirstPage, indexofLastPage);
+  console.log(currentItems, 'currentitems');
   return (
     <div>
       <h1>Connecting with Axios</h1>
@@ -120,7 +131,8 @@ const Apicall = () => {
           </tr>
         </thead>
         <tbody>
-          {edit.map((userd) => {
+          {currentItems.map((userd, index) => {
+            console.log('=-=-=-=-=-data=-=-=-=-=-=-=', userd, index, currentItems.length);
             return (
               <tr key={userd.id}>
                 <td>{userd.id}</td>
@@ -151,6 +163,7 @@ const Apicall = () => {
         </tbody>
       </Table>
       <Button onClick={() => navigate('/Posting')}>POST DATA</Button>
+      <Pagination edits={edit.length} itemsperpages={itemsperpage} paginatings={paginatings} />
       <>{/* <Putpop binding={updated} puser={userr}show={show} onHide={PopupClose} /> */}</>
     </div>
   );

@@ -1,17 +1,17 @@
-import { ActionTypes } from "./Actiontype";
-import axios from "axios";
-import "react-toastify/dist/ReactToastify.css";
+import { ActionTypes } from './Actiontype';
+import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
 export const fetchfood = () => {
   return async (dispatch) => {
     try {
-      let res = await axios.get("http://localhost:3006/foods");
+      let res = await axios.get('http://localhost:3006/foods');
       dispatch({ type: ActionTypes.FETCH_FOOD, payload: res.data });
-      console.log(res, "res");
+      console.log(res, 'res');
     } catch (err) {
       console.log(err);
-      alert("error handling");
+      alert('error handling');
     } finally {
-      console.log("welcome finally");
+      console.log('welcome finally');
     }
   };
 };
@@ -19,9 +19,9 @@ export const fetchfood = () => {
 export const addfood = (postfood) => {
   return async (dispatch) => {
     await axios
-      .post("http://localhost:3006/foods", postfood)
+      .post('http://localhost:3006/foods', postfood)
       .then((res) => {
-        console.log(res, "putf");
+        console.log(res, 'putf');
         dispatch({ type: ActionTypes.POST_FOOD, payload: res.postfood });
       })
       .catch((err) => {
@@ -35,7 +35,7 @@ export const removefood = (items) => {
     await axios
       .delete(`http://localhost:3006/foods/${items}`)
       .then((res) => {
-        console.log(res, "putf");
+        console.log(res, 'putf');
         dispatch({ type: ActionTypes.DELETE_FOOD, payload: res.items });
       })
       .catch((err) => {
@@ -51,9 +51,9 @@ export const editfoods = (editfood, id) => {
       .put(`http://localhost:3006/foods/${id}`, editfood)
 
       .then((res) => {
-        console.log(res, "putf");
+        console.log(res, 'putf');
         dispatch(fetchfood());
-        console.log("edit", editfood);
+        console.log('edit', editfood);
       })
       .catch((err) => {
         console.log(err);

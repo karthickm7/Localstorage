@@ -1,10 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import { Button, Modal } from 'react-bootstrap';
 
 function Modals(props) {
-  // return ReactDOM.createPortal(
   return (
     <>
       <div>
@@ -21,7 +19,6 @@ function Modals(props) {
         </Modal>
       </div>
     </>
-    // document.getElementById('portal')
   );
 }
 export default Modals;

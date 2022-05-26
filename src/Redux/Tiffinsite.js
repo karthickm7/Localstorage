@@ -1,17 +1,10 @@
-import {
-  Navbar,
-  Container,
-  Card,
-  Button,
-  Nav,
-  NavDropdown,
-} from "react-bootstrap";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchfood, removefood } from "../state/action/Action";
+import { Navbar, Container, Card, Button, Nav, NavDropdown } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchfood, removefood } from '../state/action/Action';
 
-import { useNavigate } from "react-router-dom";
-import "../Redux/tiffinsite.css";
+import { useNavigate } from 'react-router-dom';
+import '../Redux/tiffinsite.css';
 
 const Tiffinsite = () => {
   const [del, setDel] = useState(false);
@@ -19,8 +12,8 @@ const Tiffinsite = () => {
   let navigate = useNavigate();
   const foods = useSelector((state) => state.allreducers.foods);
   const sidedish = useSelector((state) => state.sidereducer.sidedish);
-  console.log(sidedish, "miniAdd");
-  console.log(foods, "mini");
+  console.log(sidedish, 'miniAdd');
+  console.log(foods, 'mini');
 
   useEffect(() => {
     dispatch(fetchfood());
@@ -47,14 +40,14 @@ const Tiffinsite = () => {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">
-            Tiffin{" "}
+            Tiffin{' '}
             <img
               alt=""
               src="navlogo.png"
               width="30"
               height="30"
               className="d-inline-block align-top"
-            />{" "}
+            />{' '}
             Site
           </Navbar.Brand>
 
@@ -67,7 +60,7 @@ const Tiffinsite = () => {
         </Container>
       </Navbar>
       <div>
-        <h1 style={{ textAlign: "center" }}>menu items</h1>
+        <h1 style={{ textAlign: 'center' }}>menu items</h1>
       </div>
 
       <div className="col-12 col-sm-6 col-md-8">
@@ -77,22 +70,15 @@ const Tiffinsite = () => {
               {foods &&
                 foods.map((items) => {
                   return (
-                    <Card style={{ width: "18rem" }}>
+                    <Card key={items.id} style={{ width: '18rem' }}>
                       <Card.Img variant="top" src={items.url} />
                       <Card.Body>
                         <Card.Title>{items.title}</Card.Title>
                         <Card.Text>Tasty and Spicy</Card.Text>
-                        <Button
-                          className="me-3"
-                          onClick={() => onEdit(items.id)}
-                          variant="warning"
-                        >
+                        <Button className="me-3" onClick={() => onEdit(items.id)} variant="warning">
                           EDIT
                         </Button>
-                        <Button
-                          onClick={() => onDelete(items.id)}
-                          variant="danger"
-                        >
+                        <Button onClick={() => onDelete(items.id)} variant="danger">
                           DELETE
                         </Button>
                       </Card.Body>

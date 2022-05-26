@@ -1,14 +1,14 @@
-import { ActionTypes } from "../action/Actiontype";
+import { ActionTypes } from '../action/Actiontype';
 
 const intialState = {
   foods: [],
-  sidedish: [],
+  sidedish: []
 };
 
-export const Apireducer = (state = intialState,action) => {
+export const Apireducer = (state = intialState, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_FOOD:
-      console.log(action, "reducer");
+      console.log(action, 'reducer');
       return { ...state, foods: action.payload };
     case ActionTypes.POST_FOOD:
       return { ...state, foods: action.payload };
@@ -19,10 +19,10 @@ export const Apireducer = (state = intialState,action) => {
   }
 };
 
-export const sidedishreducer = (state = intialState,action) => {
+export const sidedishreducer = (state = intialState, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_SIDEDISH:
-      console.log(action, "reducer");
+      console.log(action, 'reducer');
       return { ...state, sidedish: action.payload };
     case ActionTypes.POST_SIDEDISH:
       return { ...state, sidedish: action.payload };

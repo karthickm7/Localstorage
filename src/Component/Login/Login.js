@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { useNavigate } from "react-router-dom";
+
 import dynamic from './login.module.css';
 import Modals from '../Modal/Modals';
 
 function Login() {
-  // let navigate = useNavigate();
-
   const [show, setShow] = useState(false);
 
   const PopupClose = () => {
@@ -38,7 +36,7 @@ function Login() {
     if (datas) {
       console.log(datas);
       localStorage.setItem('Currentdata', JSON.stringify(datas));
-      // navigate("/Home");
+      // commented for testing  navigate("/Home");
     } else {
       PopupShow();
       console.log(show);
@@ -83,7 +81,7 @@ function Login() {
                 value={data.pasword}
                 name="pasword"
               />
-              {data.pasword && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{8,}$/.test(data.pasword) && (
+              {data.pasword && !/^(?=.*)(?=.*[A-Z])(?=.*d)[a-z]{8,}$/.test(data.pasword) && (
                 <span className="error" data-testid="perror-msg">
                   Please enter a valid password.
                 </span>
